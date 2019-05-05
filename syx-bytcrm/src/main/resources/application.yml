@@ -1,0 +1,4 @@
+# dev：开发模式，test：测试模式，pro：生产模式 。
+spring:
+  profiles:
+    active: dev

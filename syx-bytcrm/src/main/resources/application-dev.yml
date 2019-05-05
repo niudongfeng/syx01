@@ -1,0 +1,59 @@
+
+
+####### 设置端口号
+server:
+  port: 8080
+
+
+####### 数据库链接
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.18.0.48:3306/bytcrm?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+#    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    username: root
+    password: 123456
+
+    #连接池配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 60000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    timeout: 1500s
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+
+
+
+# 配置Mybatis-Plus
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.syx.bytcrm.entity
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: id_worker
+      db-type: mysql
+      table-underline: true

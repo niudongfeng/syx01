@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+    <script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+</head>
+<body>
+    <img src="/user/getVerify" title="测试图片" alt="">
+    <form id="" action="/user/checkVerify" method="post" >
+        <input id="randomNum" type="text">
+        <input type="button" onclick="verify()" value="验证">
+    </form>
+
+    <script >
+        function verify() {
+            var inputStr = document.getElementById("randomNum").value;
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: '/user/checkVerify',
+                contentType: "application/json",
+                data:JSON.stringify({
+                    "inputStr": inputStr
+                }),
+                success: function (result) {
+                    console.log("data is :" + result)
+                    if (result == true) {
+                        alert("验证成功");
+                        //window.location.href = "../home/home_page.html";
+                    }else {
+                        alert("验证失败");
+                    }
+                }
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
